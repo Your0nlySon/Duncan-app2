@@ -1,27 +1,74 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+class InventoryManagementApplication extends Application {
+    +void Start(Stage primaryStage) throws IOException
+    +static void main(String[] args)
+}
+class FXMLController {
+    -@FXMLVBox vBox;
+    -@FXML TextField searchField;
+    -@FXML TableView<Items> tableList;
+    -@FXML TableColumn<Items, String> name;
+    -@FXML TableColumn<Items, String> serialNumber;
+    -@FXML TableColumn<Items, String> value;
+    -@FXML TextField nameField;
+    -@FXML TextField serialField;
+    -@FXML TextField valueField;
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
+    -ObservableList<Items> list
 
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
+    +initialize()
+    +void openList(ActionEvent event) throws IOException, ParseException
+    +void saveList(ActionEvent event) throws IOException
+    +void closeList(ActionEvent event)
+    +void clearList(ActionEvent event)
+    +void addToList(ActionEvent event)
+    -Boolean validateValue(String value)
+    -Boolean validateSerial(String serial)
+    -Boolean validateName(String name)
+    +void editValue(TableColumn.CellEditEvent<Items, String> itemsStringCellEditEvent)
+    +void editSerial(TableColumn.CellEditEvent<Items, String> itemsStringCellEditEvent)
+    +void editName(TableColumn.CellEditEvent<Items, String> itemsStringCellEditEvent)
 
-class ArrayList {
-Object[] elementData
-size()
+}
+class Items {
+    -SimpleStringProperty name
+    -SimpleStringProperty serialNumber
+    -SimpleStringProperty value
+    +Items (String n, String sN, String v)
+    +String getName()
+    +void setName(String n)
+    +StringProperty nameProperty()
+    +String getSerialNumber()
+    +void setSerialNumber(String sN)
+    +StringProperty SerialNumberProperty()
+    +String getValue()
+    +void setValue(String v)
+    +StringProperty valueProperty()
+
+}
+class fileTSV {
+    void listToTSV(File file, ObservableList<Items> list) throws IOException
+    void TSVToList(File file, ObservableList<Items> list) throws IOException
+}
+class fileHTML {
+    +void listToHTML(File file, ObservableList<Items> list) throws IOException
+    +void HTMLToList(File file, ObservableList<Items> list) throws IOException
+}
+class fileJSON {
+    +void listToJSON(File file, ObservableList<Items> list) throws IOException
+    +void JSONToList(File file, ObservableList<Items> list) throws IOException, ParseException
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
+
+
+FXMLController o-- Items
+FXMLController o--fileTSV
+FXMLController o--fileHTML
+FXMLController o--fileJSON
+fileHTML o-- Items
+fileTSV o-- Items
+fileJSON o-- Items
+FXMLController --o InventoryManagementApplication
 
 @enduml

@@ -16,6 +16,7 @@ public class InventoryManagementApplication extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("InventoryManagementApplication.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Todo List");
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
