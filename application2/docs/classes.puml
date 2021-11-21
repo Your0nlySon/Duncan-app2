@@ -14,6 +14,7 @@ class FXMLController {
     -@FXML TextField nameField;
     -@FXML TextField serialField;
     -@FXML TextField valueField;
+    @FXML private Label viewLabel;
 
     -ObservableList<Items> list
 
@@ -29,6 +30,8 @@ class FXMLController {
     +void editValue(TableColumn.CellEditEvent<Items, String> itemsStringCellEditEvent)
     +void editSerial(TableColumn.CellEditEvent<Items, String> itemsStringCellEditEvent)
     +void editName(TableColumn.CellEditEvent<Items, String> itemsStringCellEditEvent)
+    +void showNormal(ActionEvent event)
+    +void showSearch(ActionEvent event)
 
 }
 class Items {
@@ -45,6 +48,8 @@ class Items {
     +String getValue()
     +void setValue(String v)
     +StringProperty valueProperty()
+    +boolean equals(Object obj)
+    +int hashCode()
 
 }
 class fileTSV {

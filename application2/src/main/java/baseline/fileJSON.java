@@ -1,5 +1,10 @@
 package baseline;
 
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Ethan Duncan
+ */
+
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -7,8 +12,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Iterator;
 
 public class fileJSON {

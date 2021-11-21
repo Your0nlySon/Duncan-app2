@@ -1,5 +1,10 @@
 package baseline;
 
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Ethan Duncan
+ */
+
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
