@@ -16,6 +16,14 @@ public class fileJSON {
     public void listToJSON(File file, ObservableList<Items> list) throws IOException {
         //create file writer
         //for loop that will write the contents of the list to the file in the format of JSON
+        FileWriter writer = new FileWriter(file);
+        writer.write("{\n  \"List\" : [\n");
+        for (Items items : list) {
+            writer.write("    {\"name\": \"" + items.getName() + "\", \"Serial Number\": \"" + items.getSerialNumber() + "\", \"Value\": \"" + items.getValue() + "\" },\n");
+        }
+        writer.write("  ]\n}");
+        writer.close();
+
     }
 
     public void JSONToList(File file, ObservableList<Items> list) throws IOException, ParseException {
@@ -29,5 +37,23 @@ public class fileJSON {
         //Loop through the iterator
         //Create another json
         //add JSON objects to the list
+        Object obj;
+        JSONObject jsonObejct;
+
+        JSONParser parser = new JSONParser();
+        JSONArray subjects = null;
+
+        obj = parser.parse(new FileReader(file));
+        jsonObejct = (JSONObject)obj;
+
+        subjects = (JSONArray)jsonObejct.get("List");
+
+        Iterator iterator = subjects.iterator();
+
+        while (iterator.hasNext()) {
+            JSONObject json = (JSONObject) iterator.next();
+            list.add(new Items(json.get("name").toString(), json.get("Serial Number").toString(), json.get("Value").toString()));
+        }
+
     }
 }

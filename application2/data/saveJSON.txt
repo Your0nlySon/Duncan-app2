@@ -1,0 +1,6 @@
+{
+  "List" : [
+    {"name": "Xbox Series X", "Serial Number": "A-XB1-24A-XY3", "Value": "1499.00" },
+    {"name": "Samsung TV", "Serial Number": "S-40A-ZBD-E47", "Value": "599.99" },
+  ]
+}

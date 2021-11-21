@@ -3,6 +3,8 @@ package baseline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Objects;
+
 public class Items {
 
     private final SimpleStringProperty name;
@@ -43,5 +45,21 @@ public class Items {
     }
     public StringProperty valueProperty() {
         return value;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        return ((this.name.get().equals(((Items) obj).name.get())) && (this.serialNumber.get().equals(((Items) obj).serialNumber.get())) && (this.value.get().equals(((Items) obj).value.get())));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.name.get());
+        return hash;
     }
 }
